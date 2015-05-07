@@ -33,6 +33,7 @@ extern struct SymEntry *entry;
 %type <InstrSeq> StmtSeq
 %type <InstrSeq> Stmt
 %type <BExprRes> BExpr
+%type <string> Str
 
 %token Ident 		
 %token IntLit 	
@@ -40,8 +41,10 @@ extern struct SymEntry *entry;
 %token Write
 %token WriteLn
 %token WriteSp
+%token WriteStr
 %token IF
-%token EQ	
+%token EQ
+%token StrLit
 
 %%
 
@@ -52,6 +55,8 @@ Dec			:	Int Ident {EnterName(table, yytext, &entry); }';'	{};
 StmtSeq 		:	Stmt StmtSeq								{$$ = AppendSeq($1, $2); } ;
 StmtSeq		:											{$$ = NULL;} ;
 Stmt			:	Write Expr ';'								{$$ = doPrint($2); };
+Stmt			:	WriteStr Str ';'								{$$ = doPrintStr($2); };
+Str				:	StrLit								{ $$ = doStrLit(yytext); };
 Stmt			:	WriteSp Expr ';'								{$$ = doPrintSp($2); };
 Stmt			:	WriteLn ';'								{$$ = doPrintLn(); };
 Stmt			:	Id '=' Expr ';'								{$$ = doAssign($1, $3);} ;

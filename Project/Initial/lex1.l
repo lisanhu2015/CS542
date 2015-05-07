@@ -19,6 +19,7 @@ int					{return Int;}
 println				{return WriteLn;}
 printsp				{return WriteSp;}
 print					{return Write;}
+printstr			{return WriteStr;}
 {letter}({letter}|{digit})*	{return Ident;}
 {digit}{digit}*		{return IntLit;}
 \=\=					{return EQ;}
@@ -33,6 +34,7 @@ print					{return Write;}
 \}					{return '}';}
 \(					{return '(';}
 \)					{return ')';}
+\".*\"				{return StrLit;}
 
 [ ]				{}
 \t				{}

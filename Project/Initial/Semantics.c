@@ -221,6 +221,26 @@ struct InstrSeq * doPrintLn() {
 	return code;
 }
 
+struct InstrSeq * doPrintStr(char * str) {
+	struct InstrSeq *code;
+	char * label = GenLabel();
+	
+	code = GenInstr(NULL, ".data", NULL, NULL, NULL);
+	AppendSeq(code, GenInstr(label, ".asciiz", str, NULL, NULL));
+	AppendSeq(code, GenInstr(NULL, ".text", NULL, NULL, NULL));
+	AppendSeq(code,GenInstr(NULL,"li","$v0","4",NULL));
+	AppendSeq(code,GenInstr(NULL,"la","$a0",label,NULL));
+	AppendSeq(code,GenInstr(NULL,"syscall",NULL,NULL,NULL));
+
+	free(str);
+	
+	return code;
+}
+
+char * doStrLit(char * str) {
+	return strdup(str);
+}
+
 struct InstrSeq * doAssign(char *name, struct ExprRes * Expr) {
 
   struct InstrSeq *code;
