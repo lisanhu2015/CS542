@@ -44,8 +44,9 @@
      Int = 260,
      Write = 261,
      WriteLn = 262,
-     IF = 263,
-     EQ = 264
+     WriteSp = 263,
+     IF = 264,
+     EQ = 265
    };
 #endif
 /* Tokens.  */
@@ -54,8 +55,9 @@
 #define Int 260
 #define Write 261
 #define WriteLn 262
-#define IF 263
-#define EQ 264
+#define WriteSp 263
+#define IF 264
+#define EQ 265
 
 
 
@@ -71,7 +73,7 @@ typedef union YYSTYPE
   struct BExprRes * BExprRes;
 }
 /* Line 1529 of yacc.c.  */
-#line 75 "y.tab.h"
+#line 77 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

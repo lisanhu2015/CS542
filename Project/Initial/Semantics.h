@@ -36,6 +36,7 @@ extern struct ExprRes *  doDiv(struct ExprRes * Res1,  struct ExprRes * Res2);
 extern struct ExprRes *  doMod(struct ExprRes * Res1,  struct ExprRes * Res2);
 extern struct InstrSeq *  doPrint(struct ExprRes * Expr);
 extern struct InstrSeq *  doPrintLn();
+extern struct InstrSeq *  doPrintSp(struct ExprRes * Expr);
 extern struct BExprRes * doBExpr (struct ExprRes * Res1,  struct ExprRes * Res2);
 extern struct InstrSeq * doIf(struct BExprRes *bRes, struct InstrSeq * seq);
 

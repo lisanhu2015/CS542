@@ -17,6 +17,7 @@ digit [0-9]
 if					{return IF;}
 int					{return Int;}
 println				{return WriteLn;}
+printsp				{return WriteSp;}
 print					{return Write;}
 {letter}({letter}|{digit})*	{return Ident;}
 {digit}{digit}*		{return IntLit;}

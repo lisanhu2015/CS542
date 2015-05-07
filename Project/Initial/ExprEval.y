@@ -39,6 +39,7 @@ extern struct SymEntry *entry;
 %token Int
 %token Write
 %token WriteLn
+%token WriteSp
 %token IF
 %token EQ	
 
@@ -51,6 +52,7 @@ Dec			:	Int Ident {EnterName(table, yytext, &entry); }';'	{};
 StmtSeq 		:	Stmt StmtSeq								{$$ = AppendSeq($1, $2); } ;
 StmtSeq		:											{$$ = NULL;} ;
 Stmt			:	Write Expr ';'								{$$ = doPrint($2); };
+Stmt			:	WriteSp Expr ';'								{$$ = doPrintSp($2); };
 Stmt			:	WriteLn ';'								{$$ = doPrintLn(); };
 Stmt			:	Id '=' Expr ';'								{$$ = doAssign($1, $3);} ;
 Stmt			:	IF '(' BExpr ')' '{' StmtSeq '}'					{$$ = doIf($3, $6);};
